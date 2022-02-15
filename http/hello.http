@@ -1,0 +1,12 @@
+### call hello
+GET http://localhost:8080/api/hello
+Content-Type: application/json
+
+### test get token
+POST http://localhost:8080/api/authenticate
+Content-Type: application/json
+
+{
+  "name": "admin",
+  "password": "admin"
+}

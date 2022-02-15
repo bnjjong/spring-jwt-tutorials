@@ -1,0 +1,34 @@
+# https://www.jetbrains.com/help/idea/http-client-in-product-code-editor.html#converting-curl-requests
+### sign up
+POST http://localhost:8080/api/signup
+Content-Type: application/json; charset=UTF-8
+
+{
+  "username": "bnjjong",
+  "password": "jshan!23$",
+  "nickname": "jongsang"
+}
+
+### get my token
+POST http://localhost:8080/api/authenticate
+Content-Type: application/json
+
+{
+  "name": "bnjjong",
+  "password": "jshan!23$"
+}
+
+> {% //response handler
+client.global.set("jwt_tutorial_token", response.body.token);
+client.log("hello my token : " + client.global.get("jwt_tutorial_token"));
+%}
+
+### fail to call admin api
+GET http://localhost:8080/api/user/bnjjong
+Authorization: Bearer {{jwt_tutorial_token}}
+Content-Type: application/json
+
+### success to call my api
+GET http://localhost:8080/api/user
+Authorization: Bearer {{jwt_tutorial_token}}
+Content-Type: application/json
